@@ -181,7 +181,7 @@
         "7": { l3Words: ["संगीत", "दुःख", "खंजर", "चंपक", "रंक", "जंजीर", "ठंडा", "शंख", "संकट", "नंदन", "नंबर", "संगत", "पंडित", "मंजरी", "अंबर", "अंगूर", "पंकज", "संगमरमर", "अंतःपुर", "मनःपटल", "अतः"], l5Words: ["संगीत", "दुःख", "खंजर", "चंपक", "रंक", "जंजीर", "ठंडा", "शंख", "संकट", "नंदन", "नंबर", "संगत", "पंडित", "मंजरी", "अंबर", "अंगूर", "पंकज", "संगमरमर", "अंतःपुर", "मनःपटल", "अतः"] },
         "8": { l3Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"], l5Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"] },
         "9": { l3Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"], l5Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"] },
-        "animals": { l3Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"], l5Words: ["बा बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"] },
+        "animals": { l3Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"], l5Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"] },
         "veggies": { l3Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"], l5Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"] },
         "flowers": { l3Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"], l5Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"] }
     };
@@ -326,7 +326,7 @@
             if (matchIndex !== -1) {
                 var matchedWord = l3ActiveTarget.splice(matchIndex, 1)[0]; l3Completed.push(matchedWord);
                 if (solvedWordsGlobal.indexOf(matchedWord) === -1) {
-                    currentMarks += (level === "3" ? (usedHintForCurrentWord ? 4 : 5) : 3);
+                    currentMarks += parseInt(level); // 1-2-3 Ladder points
                     solvedWordsGlobal.push(matchedWord); document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
                 }
                 flashL3Success(false);
@@ -336,7 +336,10 @@
         } else if (level === "2") {
             if (lessonsData[currentLesson].l3Words.indexOf(word) !== -1) {
                 l3Completed.push(word);
-                if (solvedWordsGlobal.indexOf(word) === -1) { currentMarks += 4; solvedWordsGlobal.push(word); document.getElementById("marks-display").innerText = "Marks: " + currentMarks; }
+                if (solvedWordsGlobal.indexOf(word) === -1) { 
+                    currentMarks += parseInt(level); // 1-2-3 Ladder points
+                    solvedWordsGlobal.push(word); document.getElementById("marks-display").innerText = "Marks: " + currentMarks; 
+                }
                 flashL3Success(true);
             } else { 
                 applyPenalty("❌ सही शब्द नहीं है (Not a valid word)"); 
@@ -383,7 +386,21 @@
     
     function flashHint() {
         if (l3ActiveTarget.length === 0 || isProcessing) return;
-        usedHintForCurrentWord = true;
+        
+        // If it's their first time using the hint for this specific word, charge them 1 point!
+        if (!usedHintForCurrentWord) {
+            currentMarks = Math.max(0, currentMarks - 1);
+            document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
+            
+            // Show a quick warning that it cost them a point
+            var msgBox = document.getElementById("l3-status-message");
+            msgBox.innerText = "💡 संकेत (-1 Point)";
+            msgBox.style.color = "#ff9800"; // Orange color for hint
+            setTimeout(function(){ if(!isProcessing){ msgBox.innerText = ""; msgBox.style.color = "#d32f2f"; } }, 1500);
+            
+            usedHintForCurrentWord = true;
+        }
+
         var overlay = document.getElementById("flash-overlay"), fText = document.getElementById("flash-text"), fBar = document.getElementById("flash-bar");
         fText.innerText = l3ActiveTarget[0]; overlay.style.display = "flex";
         fBar.style.animation = 'none'; void fBar.offsetWidth; fBar.style.animation = 'shrink 0.4s linear forwards';

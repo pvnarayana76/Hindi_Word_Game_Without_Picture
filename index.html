@@ -28,6 +28,7 @@
         #l3-workbench { background: white; border: 3px dashed #bbb; font-size: clamp(24px, 6vmin, 40px); font-weight: bold; height: 8vh; width: 60%; border-radius: 12px; display: flex; align-items: center; justify-content: center; color:#d32f2f;}
         .action-btn { color: white; border: none; font-size: clamp(16px, 3vmin, 22px); height: 8vh; padding: 0 2vw; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.1s; }
         .action-btn:active { transform: translateY(3px); }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         #l3-backspace { background: #757575; box-shadow: 0 4px 0 #424242; font-size: 24px;}
         #l3-submit-btn { background: #34a853; box-shadow: 0 4px 0 #1b5e20; }
         #l5-listen-btn { background: #9c27b0; box-shadow: 0 4px 0 #6a1b9a; font-size: clamp(16px, 3.5vmin, 20px); padding: 10px 20px; display: none; border-radius: 12px;}
@@ -180,13 +181,14 @@
         "7": { l3Words: ["संगीत", "दुःख", "खंजर", "चंपक", "रंक", "जंजीर", "ठंडा", "शंख", "संकट", "नंदन", "नंबर", "संगत", "पंडित", "मंजरी", "अंबर", "अंगूर", "पंकज", "संगमरमर", "अंतःपुर", "मनःपटल", "अतः"], l5Words: ["संगीत", "दुःख", "खंजर", "चंपक", "रंक", "जंजीर", "ठंडा", "शंख", "संकट", "नंदन", "नंबर", "संगत", "पंडित", "मंजरी", "अंबर", "अंगूर", "पंकज", "संगमरमर", "अंतःपुर", "मनःपटल", "अतः"] },
         "8": { l3Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"], l5Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"] },
         "9": { l3Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"], l5Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"] },
-        "animals": { l3Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"], l5Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"] },
+        "animals": { l3Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"], l5Words: ["बा बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"] },
         "veggies": { l3Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"], l5Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"] },
         "flowers": { l3Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"], l5Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"] }
     };
 
     var currentMarks = 0, solvedWordsGlobal = [], synth = window.speechSynthesis, manualVoice = null;
     var l3AllWords = [], l3ActiveTarget = [], l3Completed = [], l3InputText = "", usedHintForCurrentWord = false;
+    var isProcessing = false;
 
     function getProgressiveWordList(wordSource) {
         if (!wordSource) return [];
@@ -231,13 +233,13 @@
         var btnListen = document.getElementById("l5-listen-btn"), btnHint = document.getElementById("l5-hint-btn");
         
         if (level === "1") {
-            titleTarget.innerText = "इन शब्दों को बनाइए (Target Words):"; titleTarget.style.display = "block"; wordsTarget.style.display = "block";
+            titleTarget.innerHTML = "इन शब्दों को बनाइए <br><small style='color:#555;'>(Target Words)</small>"; titleTarget.style.display = "block"; wordsTarget.style.display = "block";
             btnListen.style.display = "none"; btnHint.style.display = "none";
         } else if (level === "2") {
-            titleTarget.innerText = "बाएँ दिए गए अक्षरों से शब्द बनाएँ (Make words from the letters on the left)"; titleTarget.style.display = "block"; wordsTarget.style.display = "none";
+            titleTarget.innerHTML = "दिए गए अक्षरों से शब्द बनाएँ <br><small style='color:#555;'>(Make words from the given letters)</small>"; titleTarget.style.display = "block"; wordsTarget.style.display = "none";
             btnListen.style.display = "none"; btnHint.style.display = "none";
         } else if (level === "3") {
-            titleTarget.innerText = "शब्द को ध्यान से सुनें और बनाएँ (Listen carefully and build the word)"; titleTarget.style.display = "block"; wordsTarget.style.display = "none";
+            titleTarget.innerHTML = "शब्द को ध्यान से सुनें और बनाएँ <br><small style='color:#555;'>(Listen carefully and build the word)</small>"; titleTarget.style.display = "block"; wordsTarget.style.display = "none";
             btnListen.style.display = "inline-block"; btnHint.style.display = "inline-block";
         }
         loadNextL3Batch();
@@ -274,7 +276,7 @@
     }
 
     function l3KeyPress(char) { document.getElementById("l3-status-message").innerText = ""; if (l3InputText.length < 15) { l3InputText += char; renderL3Board(); } }
-    function l3Backspace() { if (l3InputText.length > 0) { l3InputText = l3InputText.slice(0, -1); document.getElementById("l3-status-message").innerText = ""; renderL3Board(); } }
+    function l3Backspace() { if(isProcessing) return; if (l3InputText.length > 0) { l3InputText = l3InputText.slice(0, -1); document.getElementById("l3-status-message").innerText = ""; renderL3Board(); } }
 
     function flashL3Success(isLevel2) {
         clapSound.play().catch(function(){});
@@ -284,6 +286,7 @@
         
         setTimeout(function() {
             l3InputText = ""; wb.style.background = "white"; wb.style.borderColor = "#bbb"; wb.style.color = "#d32f2f";
+            unlockButtons();
             if (isLevel2) {
                 renderL3Board(); document.getElementById("word-count").innerText = "Words Built: " + l3Completed.length + " / " + totalWords;
                 if (l3Completed.length === totalWords) triggerLessonComplete();
@@ -294,9 +297,29 @@
         }, 500);
     }
 
+    function unlockButtons() {
+        isProcessing = false;
+        document.getElementById("l3-submit-btn").disabled = false;
+        document.getElementById("l3-backspace").disabled = false;
+    }
+
     function l3SubmitWord() {
+        if (isProcessing) return;
         var word = l3InputText.trim(); if (!word) return;
         var level = document.getElementById("level-select").value, currentLesson = document.getElementById("lesson-select").value;
+
+        // SAFEGUARD: Don't penalize if they already built this word!
+        if (l3Completed.indexOf(word) !== -1) {
+            var msgBox = document.getElementById("l3-status-message");
+            msgBox.innerText = "पहले ही बना लिया! (Already built)";
+            msgBox.style.color = "#ff9800"; // Orange warning color
+            setTimeout(function(){ msgBox.innerText = ""; msgBox.style.color = "#d32f2f"; }, 1500);
+            return;
+        }
+
+        isProcessing = true;
+        document.getElementById("l3-submit-btn").disabled = true;
+        document.getElementById("l3-backspace").disabled = true;
 
         if (level === "1" || level === "3") {
             var matchIndex = l3ActiveTarget.indexOf(word);
@@ -307,14 +330,17 @@
                     solvedWordsGlobal.push(matchedWord); document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
                 }
                 flashL3Success(false);
-            } else { applyPenalty(level === "1" ? "❌ यह शब्द ऊपर नहीं है (Not in list)" : "❌ गलत शब्द (Wrong word)"); }
+            } else { 
+                applyPenalty(level === "1" ? "❌ कृपया ऊपर दिए गए शब्दों में से चुनें! (Please build the words shown above!)" : "❌ गलत शब्द (Wrong word)"); 
+            }
         } else if (level === "2") {
             if (lessonsData[currentLesson].l3Words.indexOf(word) !== -1) {
-                if (l3Completed.indexOf(word) !== -1) { document.getElementById("l3-status-message").innerText = "पहले ही बना लिया! (Already built)"; return; }
                 l3Completed.push(word);
                 if (solvedWordsGlobal.indexOf(word) === -1) { currentMarks += 4; solvedWordsGlobal.push(word); document.getElementById("marks-display").innerText = "Marks: " + currentMarks; }
                 flashL3Success(true);
-            } else { applyPenalty("❌ सही शब्द नहीं है (Not a valid word)"); }
+            } else { 
+                applyPenalty("❌ सही शब्द नहीं है (Not a valid word)"); 
+            }
         }
     }
 
@@ -322,6 +348,8 @@
         wrongSound.play().catch(function(){}); currentMarks = Math.max(0, currentMarks - 1);
         document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
         document.getElementById("l3-status-message").innerText = msg + " (-1 Point)";
+        document.getElementById("l3-status-message").style.color = "#d32f2f";
+        unlockButtons();
     }
 
     function attemptEarlyExit() {
@@ -354,7 +382,7 @@
     function closeSummaryAndReset() { document.getElementById("summary-overlay").style.display = "none"; restartForNewStudent(); }
     
     function flashHint() {
-        if (l3ActiveTarget.length === 0) return;
+        if (l3ActiveTarget.length === 0 || isProcessing) return;
         usedHintForCurrentWord = true;
         var overlay = document.getElementById("flash-overlay"), fText = document.getElementById("flash-text"), fBar = document.getElementById("flash-bar");
         fText.innerText = l3ActiveTarget[0]; overlay.style.display = "flex";
@@ -366,7 +394,7 @@
     function loadVoices() { var voices = synth.getVoices(), vSelect = document.getElementById("voice-select"), hiFound = false; for(var j=0; j<voices.length; j++) { if(voices[j].lang.indexOf('hi') !== -1) hiFound=true; } if (vSelect.options.length <= 1) { voices.forEach(function(v, i) { if (v.lang.indexOf('hi') !== -1) { var opt = document.createElement("option"); opt.value = i; opt.innerText = "Hindi - " + v.name; vSelect.appendChild(opt); } }); } if (hiFound || manualVoice) { document.getElementById("voice-debug").innerText = "Hindi voice ready! ✔️"; if (vSelect.options.length > 1 && vSelect.value === "") { vSelect.selectedIndex = 1; manualVoiceSet(); } } }
     function manualVoiceSet() { var idx = document.getElementById("voice-select").value; if (idx !== "") manualVoice = synth.getVoices()[idx]; }
     synth.onvoiceschanged = loadVoices;
-    function pronounceL5Word() { if (l3ActiveTarget.length > 0) { synth.cancel(); var u = new SpeechSynthesisUtterance(l3ActiveTarget[0]); if (manualVoice) u.voice = manualVoice; else u.lang = 'hi-IN'; u.rate = 0.8; synth.speak(u); } }
+    function pronounceL5Word() { if (l3ActiveTarget.length > 0 && !isProcessing) { synth.cancel(); var u = new SpeechSynthesisUtterance(l3ActiveTarget[0]); if (manualVoice) u.voice = manualVoice; else u.lang = 'hi-IN'; u.rate = 0.8; synth.speak(u); } }
     
     window.onload = function() { resetTimer(); changeLesson(); setTimeout(loadVoices, 1000); };
 </script>

@@ -43,7 +43,7 @@
         #voice-debug { font-size: 11px; color: #888; margin-top: 0.5vh; }
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.97); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; border-radius: 15px;}
         .overlay-title { font-size: clamp(24px, 6vmin, 40px); color: #2e7d32; font-weight: bold; text-align: center; padding: 10px;}
-        .overlay-btn { font-size: 20px; font-weight: bold; padding: 12px 30px; border-radius: 10px; cursor: pointer; border: none; color: white; transition: 0.1s; box-shadow: 0 4px 0 rgba(0,0,0,0.2);}
+        .overlay-btn { font-size: clamp(16px, 3vmin, 20px); font-weight: bold; padding: 12px 20px; border-radius: 10px; cursor: pointer; border: none; color: white; transition: 0.1s; box-shadow: 0 4px 0 rgba(0,0,0,0.2);}
         .overlay-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.2);}
         .btn-yes { background: #34a853; } .btn-no { background: #d32f2f; } .btn-play { background: #1976d2; }
         #flash-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; border-radius: 15px; flex-direction: column; }
@@ -124,11 +124,12 @@
 
     <div id="end-lesson-overlay" class="overlay">
         <div style="font-size: 60px;">🎉</div>
-        <div id="end-lesson-text" class="overlay-title">Lesson Completed!</div>
-        <div id="end-lesson-subtext" style="margin-top: 15px; font-size: clamp(16px, 4vmin, 24px); color: #444; font-weight: bold; text-align: center;">Ready for the next lesson?</div>
-        <div style="margin-top: 30px; display: flex; gap: 20px;">
-            <button class="overlay-btn btn-yes" onclick="continueToNext()">Yes (हाँ)</button>
-            <button class="overlay-btn btn-no" onclick="showFinalSummary()">No (नहीं)</button>
+        <div id="end-lesson-text" class="overlay-title">शानदार! (Brilliant!)</div>
+        <div id="end-lesson-subtext" style="margin-top: 15px; font-size: clamp(16px, 4vmin, 24px); color: #444; font-weight: bold; text-align: center;">What would you like to do next?</div>
+        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <button id="btn-next-lesson" class="overlay-btn btn-yes" onclick="continueToNextLesson()">➡️ अगले पाठ (Next Lesson)</button>
+            <button id="btn-next-level" class="overlay-btn btn-play" onclick="continueToNextLevel()">⬆️ अगले स्तर (Next Level)</button>
+            <button class="overlay-btn btn-no" onclick="showFinalSummary()">🏆 समाप्त करें (Exit)</button>
         </div>
     </div>
 
@@ -307,10 +308,10 @@
         if (isProcessing) return;
         var word = l3InputText.trim(); if (!word) return;
         var level = document.getElementById("level-select").value, currentLesson = document.getElementById("lesson-select").value;
+        var msgBox = document.getElementById("l3-status-message");
 
         // SAFEGUARD: Don't penalize if they already built this word!
         if (l3Completed.indexOf(word) !== -1) {
-            var msgBox = document.getElementById("l3-status-message");
             msgBox.innerText = "पहले ही बना लिया! (Already built)";
             msgBox.style.color = "#ff9800"; // Orange warning color
             setTimeout(function(){ msgBox.innerText = ""; msgBox.style.color = "#d32f2f"; }, 1500);
@@ -328,6 +329,8 @@
                 if (solvedWordsGlobal.indexOf(matchedWord) === -1) {
                     currentMarks += parseInt(level); // 1-2-3 Ladder points
                     solvedWordsGlobal.push(matchedWord); document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
+                    msgBox.innerText = "🌟 बहुत बढ़िया! (Excellent!)";
+                    msgBox.style.color = "#2e7d32";
                 }
                 flashL3Success(false);
             } else { 
@@ -339,6 +342,8 @@
                 if (solvedWordsGlobal.indexOf(word) === -1) { 
                     currentMarks += parseInt(level); // 1-2-3 Ladder points
                     solvedWordsGlobal.push(word); document.getElementById("marks-display").innerText = "Marks: " + currentMarks; 
+                    msgBox.innerText = "🌟 बहुत बढ़िया! (Excellent!)";
+                    msgBox.style.color = "#2e7d32";
                 }
                 flashL3Success(true);
             } else { 
@@ -363,39 +368,47 @@
     }
     function closeEarlyExit() { document.getElementById("early-exit-overlay").style.display = "none"; startTimer(); }
 
+    // --- NEW SMART CHOICE MENU LOGIC ---
     function triggerLessonComplete() {
         pauseTimer(); clapSound.play().catch(function(){});
-        var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value), levelVal = parseInt(document.getElementById("level-select").value);
-        if (currentLessonIdx < lessonOrder.length - 1) {
-            document.getElementById("end-lesson-text").innerText = "Lesson Completed!"; document.getElementById("end-lesson-subtext").innerText = "Ready for the next lesson?\n(क्या आप अगले पाठ पर जाना चाहते हैं?)"; document.getElementById("end-lesson-overlay").style.display = "flex";
-        } else if (levelVal < 3) {
-            document.getElementById("end-lesson-text").innerText = "Level " + levelVal + " Completed! 🎉"; document.getElementById("end-lesson-subtext").innerText = "Ready for Level " + (levelVal + 1) + "?\n(अगले स्तर के लिए तैयार हैं?)"; document.getElementById("end-lesson-overlay").style.display = "flex";
-        } else { showFinalSummary(); }
+        var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value);
+        var levelVal = parseInt(document.getElementById("level-select").value);
+        
+        document.getElementById("btn-next-lesson").style.display = (currentLessonIdx < lessonOrder.length - 1) ? "inline-block" : "none";
+        document.getElementById("btn-next-level").style.display = (levelVal < 3) ? "inline-block" : "none";
+        
+        document.getElementById("end-lesson-overlay").style.display = "flex";
     }
     
-    function continueToNext() {
+    function continueToNextLesson() {
         document.getElementById("end-lesson-overlay").style.display = "none";
-        var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value), levelVal = parseInt(document.getElementById("level-select").value);
-        if (currentLessonIdx < lessonOrder.length - 1) { document.getElementById("lesson-select").value = lessonOrder[currentLessonIdx + 1]; } 
-        else if (levelVal < 3) { document.getElementById("lesson-select").value = lessonOrder[0]; document.getElementById("level-select").value = (levelVal + 1).toString(); }
+        var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value);
+        document.getElementById("lesson-select").value = lessonOrder[currentLessonIdx + 1];
+        document.getElementById("level-select").value = "1";
         changeLesson();
     }
-    
+
+    function continueToNextLevel() {
+        document.getElementById("end-lesson-overlay").style.display = "none";
+        var levelVal = parseInt(document.getElementById("level-select").value);
+        document.getElementById("level-select").value = (levelVal + 1).toString();
+        changeLesson();
+    }
+    // -----------------------------------
+
     function showFinalSummary() { document.getElementById("early-exit-overlay").style.display = "none"; document.getElementById("end-lesson-overlay").style.display = "none"; document.getElementById("summary-overlay").style.display = "flex"; document.getElementById("final-score-text").innerText = "Total Marks: " + currentMarks; var h = Math.floor(timerSeconds/3600), m = Math.floor((timerSeconds%3600)/60), s = timerSeconds%60; document.getElementById("final-time-text").innerText = "Total Time: " + (h>0?(h<10?"0"+h:h)+":":"")+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s); }
     function closeSummaryAndReset() { document.getElementById("summary-overlay").style.display = "none"; restartForNewStudent(); }
     
     function flashHint() {
         if (l3ActiveTarget.length === 0 || isProcessing) return;
         
-        // If it's their first time using the hint for this specific word, charge them 1 point!
         if (!usedHintForCurrentWord) {
             currentMarks = Math.max(0, currentMarks - 1);
             document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
             
-            // Show a quick warning that it cost them a point
             var msgBox = document.getElementById("l3-status-message");
             msgBox.innerText = "💡 संकेत (-1 Point)";
-            msgBox.style.color = "#ff9800"; // Orange color for hint
+            msgBox.style.color = "#ff9800"; 
             setTimeout(function(){ if(!isProcessing){ msgBox.innerText = ""; msgBox.style.color = "#d32f2f"; } }, 1500);
             
             usedHintForCurrentWord = true;

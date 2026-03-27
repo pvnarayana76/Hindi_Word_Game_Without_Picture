@@ -7,25 +7,32 @@
     <style>
         * { box-sizing: border-box; touch-action: manipulation; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: center; background-color: #f0f2f5; overflow: hidden; }
-        #game-board { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 98vw; height: 96%; display: flex; flex-direction: column; padding: 1.5vh 1.5vw; position: relative; }
-        .header-controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 1.5vh; flex-wrap: wrap; }
+        #game-board { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 98vw; height: 96%; display: flex; flex-direction: column; padding: 1.5vh 1.5vw; position: relative; overflow: hidden;}
+        .header-controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 1vh; flex-wrap: wrap; }
         select, #new-student-btn { padding: 6px 10px; border-radius: 8px; font-size: clamp(12px, 2vmin, 15px); font-weight: bold; border: 1px solid #ccc; cursor: pointer; outline: none;}
         #new-student-btn { background: #d32f2f; color: white; border: none; }
         #voice-select { background: #e3f2fd; border-color: #2196f3; max-width: 200px; }
-        .l3-view { display: flex; flex: 1; flex-direction: row; gap: 2vw; overflow: hidden; }
-        .l3-keyboard-section { flex: 0.45; background: #fff8e1; border: 2px solid #ffe082; border-radius: 15px; padding: 1.5vh; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.02);}
+        
+        /* Added min-height: 0 to let flex containers shrink properly */
+        .l3-view { display: flex; flex: 1; flex-direction: row; gap: 2vw; overflow: hidden; align-items: stretch; min-height: 0;}
+        .l3-keyboard-section { flex: 0.45; background: #fff8e1; border: 2px solid #ffe082; border-radius: 15px; padding: 1.5vh; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.02); min-height: 0;}
         .l3-keys-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }
         .l3-key { background-color: #1976d2; color: white; font-size: clamp(20px, 4vmin, 32px); padding: 1vh 3vw; border-radius: 8px; cursor: pointer; user-select: none; box-shadow: 0 4px 0 #0d47a1; transition: 0.1s; border:none; font-weight:bold;}
         .l3-key.matra-key { background-color: #f57c00; box-shadow: 0 4px 0 #e65100; }
         .l3-key:active { transform: translateY(3px); box-shadow: 0 1px 0 #0d47a1; }
-        .l3-board-section { flex: 0.55; display: flex; flex-direction: column; gap: 1.5vh; justify-content: space-between; }
-        .l3-box { background: #fafafa; border: 1px solid #eee; border-radius: 12px; padding: 1.5vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 12vh; position: relative;}
+        
+        .l3-board-section { flex: 0.55; display: flex; flex-direction: column; gap: 1.5vh; justify-content: space-between; overflow: hidden; min-height: 0;}
+        .l3-box { background: #fafafa; border: 1px solid #eee; border-radius: 12px; padding: 1.5vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; position: relative; overflow: hidden;}
+        
         .l3-target-box { border-color: #90caf9; background: #e3f2fd; }
         .l3-completed-box { border-color: #a5d6a7; background: #e8f5e9; flex:1; align-items: stretch;}
+        
         .l3-title { font-size: 16px; font-weight: bold; color: #1976d2; margin-bottom: 5px; width:100%; text-align:center;}
         .l3-word-pill { background: white; border: 2px solid #ccc; padding: 5px 15px; border-radius: 20px; font-size: clamp(18px, 4vmin, 26px); font-weight: bold; margin: 4px; display: inline-block; }
-        .l3-workbench-area { display: flex; gap: 10px; width: 100%; align-items: center; justify-content: center; }
+        
+        .l3-workbench-area { display: flex; gap: 10px; width: 100%; align-items: center; justify-content: center; min-height: 0;}
         #l3-workbench { background: white; border: 3px dashed #bbb; font-size: clamp(24px, 6vmin, 40px); font-weight: bold; height: 8vh; width: 60%; border-radius: 12px; display: flex; align-items: center; justify-content: center; color:#d32f2f;}
+        
         .action-btn { color: white; border: none; font-size: clamp(16px, 3vmin, 22px); height: 8vh; padding: 0 2vw; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.1s; }
         .action-btn:active { transform: translateY(3px); }
         .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -33,14 +40,21 @@
         #l3-submit-btn { background: #34a853; box-shadow: 0 4px 0 #1b5e20; }
         #l5-listen-btn { background: #9c27b0; box-shadow: 0 4px 0 #6a1b9a; font-size: clamp(16px, 3.5vmin, 20px); padding: 10px 20px; display: none; border-radius: 12px;}
         #l5-hint-btn { background: #ffb300; box-shadow: 0 4px 0 #fb8c00; font-size: clamp(16px, 3.5vmin, 20px); padding: 10px 20px; display: none; border-radius: 12px; color: #333;}
+        
         .finish-btn-style { background: #ff9800; box-shadow: 0 4px 0 #e65100; font-size: clamp(14px, 2.5vmin, 18px); padding: 8px 20px; position: absolute; top: 10px; right: 10px; border-radius: 8px; color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.1s; z-index: 10;}
         .finish-btn-style:active { transform: translateY(3px); box-shadow: 0 1px 0 #e65100; }
         #l3-status-message { height:20px; font-weight:bold; color:#d32f2f; font-size:16px;}
-        .stats-container { width: 100%; display: flex; flex-direction: column; align-items: center; border-top: 2px solid #eee; padding-top: 1vh; margin-top: auto;}
+        
+        /* Internal scrolling specifically for the completed words box */
+        #l3-completed-words { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; align-content: flex-start; flex: 1; width: 100%; overflow-y: auto; padding-top: 5px; min-height: 0;}
+        
+        .stats-container { width: 100%; display: flex; flex-direction: column; align-items: center; border-top: 2px solid #eee; padding-top: 0.5vh; margin-top: auto;}
         .stats { width: 100%; display: flex; justify-content: space-around; align-items: center; font-size: clamp(13px, 2.5vmin, 18px); font-weight: bold; gap: 5px; }
         #marks-display { color: #d32f2f; background: #ffebee; padding: 5px 12px; border-radius: 8px; }
         #timer-display { color: #1976d2; background: #e3f2fd; padding: 5px 12px; border-radius: 8px; }
         #voice-debug { font-size: 11px; color: #888; margin-top: 0.5vh; }
+        
+        /* Overlays */
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.97); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; border-radius: 15px;}
         .overlay-title { font-size: clamp(24px, 6vmin, 40px); color: #2e7d32; font-weight: bold; text-align: center; padding: 10px;}
         .overlay-btn { font-size: clamp(16px, 3vmin, 20px); font-weight: bold; padding: 12px 20px; border-radius: 10px; cursor: pointer; border: none; color: white; transition: 0.1s; box-shadow: 0 4px 0 rgba(0,0,0,0.2);}
@@ -51,7 +65,37 @@
         .flash-timer { width: 60%; height: 12px; background: #555; border-radius: 6px; margin-top: 30px; overflow: hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);}
         .flash-progress { width: 100%; height: 100%; background: #ffeb3b; }
         @keyframes shrink { from { width: 100%; } to { width: 0%; } }
-        @media (orientation: portrait) { .l3-view { flex-direction: column; gap: 1vh; } .l3-keyboard-section { flex: 0 0 35%; padding: 1vh;} .l3-board-section { flex: 1; justify-content: flex-start;} .l3-box { min-height: 8vh; padding: 1vh;} .l3-key { padding: 1vh 4vw; font-size: 22px;} #l3-workbench { height: 7vh; font-size: 28px;} .action-btn { height: 7vh; padding: 0 3vw;} }
+        
+        /* PORTRAIT MODE FIX (Mobile vertical) */
+        @media (orientation: portrait) { 
+            .l3-view { flex-direction: column; gap: 1vh; } 
+            .l3-keyboard-section { flex: 0 0 35%; padding: 1vh;} 
+            .l3-board-section { flex: 1; justify-content: flex-start;} 
+        }
+        
+        /* EXTREME SQUASH FOR LANDSCAPE MOBILE (Fixes screenshot #1000335003.png) */
+        @media (max-height: 500px) {
+            .header-controls { margin-bottom: 0.5vh; gap: 4px; }
+            select, #new-student-btn { padding: 2px 5px; font-size: 11px; }
+            .l3-board-section { gap: 0.5vh; }
+            .l3-box { padding: 0.5vh 1vw; }
+            .l3-title { font-size: 12px; margin-bottom: 2px;}
+            
+            .l3-key { padding: 0.5vh 1.5vw; font-size: clamp(14px, 4vh, 20px); box-shadow: 0 2px 0 #0d47a1; }
+            .l3-key.matra-key { box-shadow: 0 2px 0 #e65100; }
+            
+            #l3-workbench { height: 5vh; font-size: clamp(16px, 4vh, 24px); }
+            .action-btn { height: 5vh; font-size: clamp(12px, 3vh, 16px); padding: 0 1.5vw;}
+            #l3-backspace { font-size: 16px; }
+            #l5-listen-btn, #l5-hint-btn { padding: 3px 8px; font-size: clamp(10px, 2.5vh, 14px);}
+            
+            #l3-status-message { height: 14px; font-size: 12px; }
+            .l3-word-pill { padding: 2px 6px; font-size: clamp(12px, 3.5vh, 18px); margin: 2px;}
+            
+            /* Moved Finish button and shrunk it so it doesn't overlap text */
+            .finish-btn-style { padding: 3px 8px; font-size: 10px; top: 2px; right: 2px; box-shadow: 0 2px 0 #e65100;}
+            .stats-container { padding-top: 0.2vh; }
+        }
     </style>
 </head>
 <body onclick="kickstartSpeech()">
@@ -107,8 +151,8 @@
 
             <div class="l3-box l3-completed-box">
                 <button id="l5-finish-btn" class="finish-btn-style" onclick="attemptEarlyExit()">🏁 समाप्त करें (Finish)</button>
-                <div class="l3-title" style="color:#555; text-align:left; font-size:14px;">पूर्ण शब्द (Completed):</div>
-                <div id="l3-completed-words" style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; align-content: flex-start; height: 100%; overflow-y: auto;"></div>
+                <div class="l3-title" style="color:#555; text-align:left; font-size:14px; margin:0;">पूर्ण शब्द (Completed):</div>
+                <div id="l3-completed-words"></div>
             </div>
         </div>
     </div>
@@ -274,6 +318,9 @@
         cBox.innerHTML = "";
         l3Completed.forEach(function(w) { var span = document.createElement("span"); span.className = "l3-word-pill"; span.style.background = "#c8e6c9"; span.style.borderColor = "#81c784"; span.style.color = "#2e7d32"; span.innerText = w; cBox.appendChild(span); });
         document.getElementById("l3-workbench").innerText = l3InputText;
+        
+        // This tiny trick auto-scrolls the completed words box to the bottom as they add words!
+        cBox.scrollTop = cBox.scrollHeight;
     }
 
     function l3KeyPress(char) { document.getElementById("l3-status-message").innerText = ""; if (l3InputText.length < 15) { l3InputText += char; renderL3Board(); } }
@@ -310,10 +357,9 @@
         var level = document.getElementById("level-select").value, currentLesson = document.getElementById("lesson-select").value;
         var msgBox = document.getElementById("l3-status-message");
 
-        // SAFEGUARD: Don't penalize if they already built this word!
         if (l3Completed.indexOf(word) !== -1) {
             msgBox.innerText = "पहले ही बना लिया! (Already built)";
-            msgBox.style.color = "#ff9800"; // Orange warning color
+            msgBox.style.color = "#ff9800"; 
             setTimeout(function(){ msgBox.innerText = ""; msgBox.style.color = "#d32f2f"; }, 1500);
             return;
         }
@@ -368,7 +414,6 @@
     }
     function closeEarlyExit() { document.getElementById("early-exit-overlay").style.display = "none"; startTimer(); }
 
-    // --- NEW SMART CHOICE MENU LOGIC ---
     function triggerLessonComplete() {
         pauseTimer(); clapSound.play().catch(function(){});
         var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value);
@@ -394,7 +439,6 @@
         document.getElementById("level-select").value = (levelVal + 1).toString();
         changeLesson();
     }
-    // -----------------------------------
 
     function showFinalSummary() { document.getElementById("early-exit-overlay").style.display = "none"; document.getElementById("end-lesson-overlay").style.display = "none"; document.getElementById("summary-overlay").style.display = "flex"; document.getElementById("final-score-text").innerText = "Total Marks: " + currentMarks; var h = Math.floor(timerSeconds/3600), m = Math.floor((timerSeconds%3600)/60), s = timerSeconds%60; document.getElementById("final-time-text").innerText = "Total Time: " + (h>0?(h<10?"0"+h:h)+":":"")+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s); }
     function closeSummaryAndReset() { document.getElementById("summary-overlay").style.display = "none"; restartForNewStudent(); }

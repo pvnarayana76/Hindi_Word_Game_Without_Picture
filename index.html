@@ -13,7 +13,6 @@
         #new-student-btn { background: #d32f2f; color: white; border: none; }
         #voice-select { background: #e3f2fd; border-color: #2196f3; max-width: 200px; }
         
-        /* Added min-height: 0 to let flex containers shrink properly */
         .l3-view { display: flex; flex: 1; flex-direction: row; gap: 2vw; overflow: hidden; align-items: stretch; min-height: 0;}
         .l3-keyboard-section { flex: 0.45; background: #fff8e1; border: 2px solid #ffe082; border-radius: 15px; padding: 1.5vh; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.02); min-height: 0;}
         .l3-keys-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }
@@ -45,7 +44,6 @@
         .finish-btn-style:active { transform: translateY(3px); box-shadow: 0 1px 0 #e65100; }
         #l3-status-message { height:20px; font-weight:bold; color:#d32f2f; font-size:16px;}
         
-        /* Internal scrolling specifically for the completed words box */
         #l3-completed-words { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; align-content: flex-start; flex: 1; width: 100%; overflow-y: auto; padding-top: 5px; min-height: 0;}
         
         .stats-container { width: 100%; display: flex; flex-direction: column; align-items: center; border-top: 2px solid #eee; padding-top: 0.5vh; margin-top: auto;}
@@ -56,45 +54,44 @@
         
         /* Overlays */
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.97); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; border-radius: 15px;}
-        .overlay-title { font-size: clamp(24px, 6vmin, 40px); color: #2e7d32; font-weight: bold; text-align: center; padding: 10px;}
+        .overlay-title { font-size: clamp(24px, 6vmin, 40px); font-weight: bold; text-align: center; padding: 10px;}
         .overlay-btn { font-size: clamp(16px, 3vmin, 20px); font-weight: bold; padding: 12px 20px; border-radius: 10px; cursor: pointer; border: none; color: white; transition: 0.1s; box-shadow: 0 4px 0 rgba(0,0,0,0.2);}
         .overlay-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.2);}
         .btn-yes { background: #34a853; } .btn-no { background: #d32f2f; } .btn-play { background: #1976d2; }
+        #round-stats { background: #e3f2fd; color: #1976d2; padding: 15px 25px; border-radius: 10px; font-size: clamp(14px, 3vmin, 18px); font-weight: bold; margin: 10px 0 25px 0; text-align: center; border: 2px solid #90caf9; line-height: 1.6; width: 80%; max-width: 400px;}
+        
         #flash-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; border-radius: 15px; flex-direction: column; }
         .flash-word { font-size: clamp(60px, 15vmin, 120px); color: #fff; font-weight: bold; text-shadow: 0 0 20px #ffeb3b; letter-spacing: 2px;}
         .flash-timer { width: 60%; height: 12px; background: #555; border-radius: 6px; margin-top: 30px; overflow: hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);}
         .flash-progress { width: 100%; height: 100%; background: #ffeb3b; }
         @keyframes shrink { from { width: 100%; } to { width: 0%; } }
         
-        /* PORTRAIT MODE FIX (Mobile vertical) */
+        /* PORTRAIT MODE FIX */
         @media (orientation: portrait) { 
             .l3-view { flex-direction: column; gap: 1vh; } 
             .l3-keyboard-section { flex: 0 0 35%; padding: 1vh;} 
             .l3-board-section { flex: 1; justify-content: flex-start;} 
         }
         
-        /* EXTREME SQUASH FOR LANDSCAPE MOBILE (Fixes screenshot #1000335003.png) */
+        /* EXTREME SQUASH FOR LANDSCAPE MOBILE */
         @media (max-height: 500px) {
             .header-controls { margin-bottom: 0.5vh; gap: 4px; }
             select, #new-student-btn { padding: 2px 5px; font-size: 11px; }
             .l3-board-section { gap: 0.5vh; }
             .l3-box { padding: 0.5vh 1vw; }
             .l3-title { font-size: 12px; margin-bottom: 2px;}
-            
             .l3-key { padding: 0.5vh 1.5vw; font-size: clamp(14px, 4vh, 20px); box-shadow: 0 2px 0 #0d47a1; }
             .l3-key.matra-key { box-shadow: 0 2px 0 #e65100; }
-            
             #l3-workbench { height: 5vh; font-size: clamp(16px, 4vh, 24px); }
             .action-btn { height: 5vh; font-size: clamp(12px, 3vh, 16px); padding: 0 1.5vw;}
             #l3-backspace { font-size: 16px; }
             #l5-listen-btn, #l5-hint-btn { padding: 3px 8px; font-size: clamp(10px, 2.5vh, 14px);}
-            
             #l3-status-message { height: 14px; font-size: 12px; }
             .l3-word-pill { padding: 2px 6px; font-size: clamp(12px, 3.5vh, 18px); margin: 2px;}
-            
-            /* Moved Finish button and shrunk it so it doesn't overlap text */
             .finish-btn-style { padding: 3px 8px; font-size: 10px; top: 2px; right: 2px; box-shadow: 0 2px 0 #e65100;}
             .stats-container { padding-top: 0.2vh; }
+            #round-stats { padding: 8px 15px; margin: 5px 0 15px 0; font-size: 12px; line-height: 1.4;}
+            #end-lesson-emoji { font-size: 40px !important;}
         }
     </style>
 </head>
@@ -167,10 +164,11 @@
     </div>
 
     <div id="end-lesson-overlay" class="overlay">
-        <div style="font-size: 60px;">🎉</div>
-        <div id="end-lesson-text" class="overlay-title">शानदार! (Brilliant!)</div>
-        <div id="end-lesson-subtext" style="margin-top: 15px; font-size: clamp(16px, 4vmin, 24px); color: #444; font-weight: bold; text-align: center;">What would you like to do next?</div>
-        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <div id="end-lesson-emoji" style="font-size: 60px;">🎉</div>
+        <div id="end-lesson-text" class="overlay-title"></div>
+        <div id="round-stats"></div>
+        <div style="font-size: clamp(14px, 3vmin, 20px); color: #444; font-weight: bold; text-align: center;">What would you like to do next?</div>
+        <div style="margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
             <button id="btn-next-lesson" class="overlay-btn btn-yes" onclick="continueToNextLesson()">➡️ अगले पाठ (Next Lesson)</button>
             <button id="btn-next-level" class="overlay-btn btn-play" onclick="continueToNextLevel()">⬆️ अगले स्तर (Next Level)</button>
             <button class="overlay-btn btn-no" onclick="showFinalSummary()">🏆 समाप्त करें (Exit)</button>
@@ -182,7 +180,7 @@
         <div class="overlay-title" style="color:#d32f2f;">Are you sure?</div>
         <div style="margin-top: 15px; font-size: clamp(16px, 4vmin, 24px); color: #444; font-weight: bold; text-align: center;">You haven't finished all the words!<br>(क्या आप बीच में ही समाप्त करना चाहते हैं?)</div>
         <div style="margin-top: 30px; display: flex; gap: 20px;">
-            <button class="overlay-btn btn-yes" style="background:#d32f2f;" onclick="showFinalSummary()">Yes (End)</button>
+            <button class="overlay-btn btn-yes" style="background:#d32f2f;" onclick="forceEndLesson()">Yes (End)</button>
             <button class="overlay-btn btn-no" style="background:#34a853;" onclick="closeEarlyExit()">No (Keep Playing)</button>
         </div>
     </div>
@@ -318,8 +316,6 @@
         cBox.innerHTML = "";
         l3Completed.forEach(function(w) { var span = document.createElement("span"); span.className = "l3-word-pill"; span.style.background = "#c8e6c9"; span.style.borderColor = "#81c784"; span.style.color = "#2e7d32"; span.innerText = w; cBox.appendChild(span); });
         document.getElementById("l3-workbench").innerText = l3InputText;
-        
-        // This tiny trick auto-scrolls the completed words box to the bottom as they add words!
         cBox.scrollTop = cBox.scrollHeight;
     }
 
@@ -373,7 +369,7 @@
             if (matchIndex !== -1) {
                 var matchedWord = l3ActiveTarget.splice(matchIndex, 1)[0]; l3Completed.push(matchedWord);
                 if (solvedWordsGlobal.indexOf(matchedWord) === -1) {
-                    currentMarks += parseInt(level); // 1-2-3 Ladder points
+                    currentMarks += parseInt(level);
                     solvedWordsGlobal.push(matchedWord); document.getElementById("marks-display").innerText = "Marks: " + currentMarks;
                     msgBox.innerText = "🌟 बहुत बढ़िया! (Excellent!)";
                     msgBox.style.color = "#2e7d32";
@@ -386,7 +382,7 @@
             if (lessonsData[currentLesson].l3Words.indexOf(word) !== -1) {
                 l3Completed.push(word);
                 if (solvedWordsGlobal.indexOf(word) === -1) { 
-                    currentMarks += parseInt(level); // 1-2-3 Ladder points
+                    currentMarks += parseInt(level);
                     solvedWordsGlobal.push(word); document.getElementById("marks-display").innerText = "Marks: " + currentMarks; 
                     msgBox.innerText = "🌟 बहुत बढ़िया! (Excellent!)";
                     msgBox.style.color = "#2e7d32";
@@ -412,13 +408,45 @@
         if (l3Completed.length < totalWords) { document.getElementById("early-exit-overlay").style.display = "flex"; pauseTimer(); } 
         else { triggerLessonComplete(); }
     }
+    
     function closeEarlyExit() { document.getElementById("early-exit-overlay").style.display = "none"; startTimer(); }
+    
+    // NEW: Push to report card on early exit!
+    function forceEndLesson() {
+        document.getElementById("early-exit-overlay").style.display = "none";
+        triggerLessonComplete();
+    }
 
+    // --- SMART REPORT CARD LOGIC ---
     function triggerLessonComplete() {
-        pauseTimer(); clapSound.play().catch(function(){});
+        pauseTimer(); 
         var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value);
         var levelVal = parseInt(document.getElementById("level-select").value);
         
+        var currentLesson = document.getElementById("lesson-select").value;
+        var totalW = lessonsData[currentLesson][levelVal === 3 ? 'l5Words' : 'l3Words'].length;
+        var compW = l3Completed.length;
+        var skipW = totalW - compW;
+
+        // Zero Effort Detector!
+        if (compW === 0) {
+            document.getElementById("end-lesson-emoji").innerText = "👀";
+            document.getElementById("end-lesson-text").innerText = "ध्यान दें! (Attention!)";
+            document.getElementById("end-lesson-text").style.color = "#f57c00";
+        } else {
+            document.getElementById("end-lesson-emoji").innerText = "🎉";
+            document.getElementById("end-lesson-text").innerText = "शानदार! (Brilliant!)";
+            document.getElementById("end-lesson-text").style.color = "#2e7d32";
+            clapSound.play().catch(function(){});
+        }
+
+        var h = Math.floor(timerSeconds/3600), m = Math.floor((timerSeconds%3600)/60), s = timerSeconds%60;
+        var timeStr = (h>0?(h<10?"0"+h:h)+":":"")+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+
+        document.getElementById("round-stats").innerHTML =
+            "Total Marks: <span style='color:#d32f2f'>" + currentMarks + "</span> | Time: " + timeStr + "<br>" +
+            "Words: " + totalW + " | Solved: <span style='color:#2e7d32'>" + compW + "</span> | Unfinished: <span style='color:#f57c00'>" + skipW + "</span>";
+
         document.getElementById("btn-next-lesson").style.display = (currentLessonIdx < lessonOrder.length - 1) ? "inline-block" : "none";
         document.getElementById("btn-next-level").style.display = (levelVal < 3) ? "inline-block" : "none";
         
@@ -440,7 +468,7 @@
         changeLesson();
     }
 
-    function showFinalSummary() { document.getElementById("early-exit-overlay").style.display = "none"; document.getElementById("end-lesson-overlay").style.display = "none"; document.getElementById("summary-overlay").style.display = "flex"; document.getElementById("final-score-text").innerText = "Total Marks: " + currentMarks; var h = Math.floor(timerSeconds/3600), m = Math.floor((timerSeconds%3600)/60), s = timerSeconds%60; document.getElementById("final-time-text").innerText = "Total Time: " + (h>0?(h<10?"0"+h:h)+":":"")+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s); }
+    function showFinalSummary() { document.getElementById("end-lesson-overlay").style.display = "none"; document.getElementById("summary-overlay").style.display = "flex"; document.getElementById("final-score-text").innerText = "Total Marks: " + currentMarks; var h = Math.floor(timerSeconds/3600), m = Math.floor((timerSeconds%3600)/60), s = timerSeconds%60; document.getElementById("final-time-text").innerText = "Total Time: " + (h>0?(h<10?"0"+h:h)+":":"")+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s); }
     function closeSummaryAndReset() { document.getElementById("summary-overlay").style.display = "none"; restartForNewStudent(); }
     
     function flashHint() {

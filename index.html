@@ -225,7 +225,7 @@
         "8": { l3Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"], l5Words: ["कक्षा", "पक्षी", "यज्ञ", "छात्र", "पत्र", "विज्ञान", "ज्ञानी", "गाँव", "आँख", "कारवाँ", "माँग", "पुत्र", "कॉर", "शत्रु", "माँ", "पक्ष", "डॉक्टर", "ऊँट", "मित्र", "चाँद", "कॉपी", "साक्षी", "लॉन", "मॉडल"] },
         "9": { l3Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"], l5Words: ["चित्रा", "बधाई", "किताब", "कहानी", "खिलौना", "गुड़िया", "चीज़", "खरीद", "लाड़ली", "नाज़", "भला", "ढंग", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "सफेद", "केसरिया", "लाल", "नीला", "काला", "बैंगनी", "पीला", "हरा", "गुलाबी"] },
         "animals": { l3Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"], l5Words: ["बाघ", "हाथी", "भालू", "खरगोश", "भैंस", "गधा", "कौआ", "कबूतर", "तोता", "मोर", "गौरैया", "चील"] },
-        "veggies": { l3Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"], l5Words: ["आलू", "प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"] },
+        "veggies": { l3Words: ["आलू", " प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"], l5Words: ["आलू", " प्याज", "मिर्च", "टमाटर", "तुरई", "बैंगन", "मटर", "भिंडी", "लौकी", "अदरक", "सेम", "ककड़ी", "करेला", "कुंदरू", "चिचिंडा", "शकरकंद", "गाजर", "पालक", "चौलाई", "लहसुन", "कुम्हड़ा", "इमली", "फूल गोभी", "बंद गोभी", "हरी धनिया", "मीठा नीम", "लोबिया", "पेठा", "परवल", "कटहल", "शलजम", "टिंडे"] },
         "flowers": { l3Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"], l5Words: ["गुलाब", "कमल", "केवड़ा", "चमेली", "चंपा", "जूही", "गुड़हल", "गेंदा", "पारिजात", "सूरजमुखी"] }
     };
 
@@ -411,32 +411,41 @@
     
     function closeEarlyExit() { document.getElementById("early-exit-overlay").style.display = "none"; startTimer(); }
     
-    // NEW: Push to report card on early exit!
     function forceEndLesson() {
         document.getElementById("early-exit-overlay").style.display = "none";
         triggerLessonComplete();
     }
 
-    // --- SMART REPORT CARD LOGIC ---
+    // --- NEW GRADED REPORT CARD LOGIC ---
     function triggerLessonComplete() {
         pauseTimer(); 
         var currentLessonIdx = lessonOrder.indexOf(document.getElementById("lesson-select").value);
         var levelVal = parseInt(document.getElementById("level-select").value);
-        
         var currentLesson = document.getElementById("lesson-select").value;
+        
         var totalW = lessonsData[currentLesson][levelVal === 3 ? 'l5Words' : 'l3Words'].length;
         var compW = l3Completed.length;
         var skipW = totalW - compW;
+        var percentage = (totalW === 0) ? 0 : (compW / totalW);
 
-        // Zero Effort Detector!
+        // Graded Celebration Logic
         if (compW === 0) {
             document.getElementById("end-lesson-emoji").innerText = "👀";
             document.getElementById("end-lesson-text").innerText = "ध्यान दें! (Attention!)";
-            document.getElementById("end-lesson-text").style.color = "#f57c00";
-        } else {
+            document.getElementById("end-lesson-text").style.color = "#d32f2f"; // Red
+        } else if (percentage < 0.5) { // Less than half solved
+            document.getElementById("end-lesson-emoji").innerText = "🤔";
+            document.getElementById("end-lesson-text").innerText = "और अभ्यास करें! (Needs Practice)";
+            document.getElementById("end-lesson-text").style.color = "#f57c00"; // Orange
+        } else if (percentage < 1) { // More than half, but not perfect
+            document.getElementById("end-lesson-emoji").innerText = "👍";
+            document.getElementById("end-lesson-text").innerText = "अच्छा प्रयास! (Good Try!)";
+            document.getElementById("end-lesson-text").style.color = "#1976d2"; // Blue
+            clapSound.play().catch(function(){});
+        } else { // 100% Perfect
             document.getElementById("end-lesson-emoji").innerText = "🎉";
             document.getElementById("end-lesson-text").innerText = "शानदार! (Brilliant!)";
-            document.getElementById("end-lesson-text").style.color = "#2e7d32";
+            document.getElementById("end-lesson-text").style.color = "#2e7d32"; // Green
             clapSound.play().catch(function(){});
         }
 
